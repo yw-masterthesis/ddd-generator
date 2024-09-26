@@ -1,0 +1,21 @@
+<!ELEMENT domain (context+)>
+<!ATTLIST domain name ID #REQUIRED>
+<!ELEMENT context (aggregate|entity|value-object|enum|service|event)*>
+<!ATTLIST context name ID #REQUIRED>
+<!ELEMENT aggregate (root, identity?, entity*, value-object*)>
+<!ATTLIST aggregate name ID #REQUIRED>
+<!ELEMENT root EMPTY>
+<!ATTLIST root name ID #REQUIRED>
+<!ELEMENT identity EMPTY>
+<!ATTLIST identity name ID #IMPLIED>
+<!ATTLIST identity ref IDREF #IMPLIED>
+<!ELEMENT entity EMPTY>
+<!ATTLIST entity name ID #REQUIRED>
+<!ELEMENT value-object EMPTY>
+<!ATTLIST value-object name ID #REQUIRED>
+<!ELEMENT enum EMPTY>
+<!ATTLIST enum name ID #REQUIRED>
+<!ELEMENT service EMPTY>
+<!ATTLIST service name ID #REQUIRED>
+<!ELEMENT event EMPTY>
+<!ATTLIST event name ID #REQUIRED>
