@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE domain SYSTEM "domain-model.dtd">
+<domain name="Library">
+  <context name="Catalogue">
+    <entity name="Book"></entity>
+    <entity name="BookInstance"></entity>
+    <value-object name="BookId"></value-object>
+    <value-object name="ISBN"></value-object>
+    <value-object name="Title"></value-object>
+    <value-object name="Author"></value-object>
+    <enum name="BookType"></enum>
+    <service name="CatalogueService"></service>
+    <event name="BookInstanceAddedToCatalogue"></event>
+  </context>
+</domain>
