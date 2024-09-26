@@ -13,7 +13,6 @@
   "main": "./dist/generators/index.js",
   "types": "./dist/types/generators/index.d.ts",
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "npm run compile && npm run copy-files",
     "check-types": "tsc -p tsconfig.spec.json",
     "clean": "rimraf dist",
