@@ -1,0 +1,10 @@
+node_modules
+node_modules_container
+docs
+.git
+.vscode-test
+**/templates/**/
+**/generated-serialized-grammar.js
+test/fixtures/**
+dist
+coverage
