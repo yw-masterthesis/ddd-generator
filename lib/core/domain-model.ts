@@ -15,6 +15,8 @@ export class Context {
   entities: Entity[] = [];
   valueObjects: ValueObject[] = [];
   enums: Enum[] = [];
+  domainServices: DomainService[] = [];
+  domainEvents: DomainEvent[] = [];
 }
 
 export class Aggregate {
@@ -50,4 +52,16 @@ export class Enum {
   name?: string;
 
   parent?: Context | Aggregate;
+}
+
+export class DomainService {
+  name?: string;
+
+  parent?: Context;
+}
+
+export class DomainEvent {
+  name?: string;
+
+  parent?: Context;
 }

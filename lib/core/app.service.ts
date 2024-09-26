@@ -40,6 +40,10 @@ export class AppService {
       parseNestedEnums(contextElem, context);
 
       parseNestedValueObjects(contextElem, context);
+
+      parseNestedDomainServices(contextElem, context);
+
+      parseNestedDomainEvents(contextElem, context);
     }
 
     // Parse the XML data
@@ -95,6 +99,30 @@ function parseNestedRoot(parentElem: any, parent: Aggregate) {
 function parseNestedIdentity(parentElem: any, parent: Aggregate) {
   if (parentElem['DDD:Identity']) {
     for (const identityElem of parentElem['DDD:Identity']) {
+      const valueObject = new ValueObject();
+      valueObject.name = identityElem.$.name;
+      valueObject.parent = parent;
+      valueObject.isAggregateIdentity = true;
+      parent.valueObjects.push(valueObject);
+    }
+  }
+}
+
+function parseNestedDomainServices(parentElem: any, parent: Context) {
+  if (parentElem['DDD:Service']) {
+    for (const identityElem of parentElem['DDD:Service']) {
+      const valueObject = new ValueObject();
+      valueObject.name = identityElem.$.name;
+      valueObject.parent = parent;
+      valueObject.isAggregateIdentity = true;
+      parent.valueObjects.push(valueObject);
+    }
+  }
+}
+
+function parseNestedDomainEvents(parentElem: any, parent: Context) {
+  if (parentElem['DDD:Event']) {
+    for (const identityElem of parentElem['DDD:Event']) {
       const valueObject = new ValueObject();
       valueObject.name = identityElem.$.name;
       valueObject.parent = parent;

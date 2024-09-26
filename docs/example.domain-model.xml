@@ -18,6 +18,7 @@
         <DDD:Identity xmi:id="i2" name="BookId" />
       </DDD:Aggregate>
       <DDD:Enum xmi:id="e1" name="BookType" />
+      <DDD:Service xmi:id="s1" name="CatalogueService" />
       <DDD:Event xmi:id="ev1" name="BookInstanceAddedToCatalogue" />
     </DDD:Context>
   </DDD:Domain>
