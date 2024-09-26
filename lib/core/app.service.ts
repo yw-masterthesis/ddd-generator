@@ -1,5 +1,5 @@
 import { parseStringPromise } from 'xml2js';
-import { Aggregate, Context, Domain, Entity, Enum, ValueObject } from './domain-model.js';
+import { Aggregate, Context, Domain, DomainEvent, DomainService, Entity, Enum, ValueObject } from './domain-model.js';
 
 export class AppService {
   // Function to parse XML string
@@ -111,11 +111,10 @@ function parseNestedIdentity(parentElem: any, parent: Aggregate) {
 function parseNestedDomainServices(parentElem: any, parent: Context) {
   if (parentElem['DDD:Service']) {
     for (const identityElem of parentElem['DDD:Service']) {
-      const valueObject = new ValueObject();
-      valueObject.name = identityElem.$.name;
-      valueObject.parent = parent;
-      valueObject.isAggregateIdentity = true;
-      parent.valueObjects.push(valueObject);
+      const domainService = new DomainService();
+      domainService.name = identityElem.$.name;
+      domainService.parent = parent;
+      parent.domainServices.push(domainService);
     }
   }
 }
@@ -123,11 +122,10 @@ function parseNestedDomainServices(parentElem: any, parent: Context) {
 function parseNestedDomainEvents(parentElem: any, parent: Context) {
   if (parentElem['DDD:Event']) {
     for (const identityElem of parentElem['DDD:Event']) {
-      const valueObject = new ValueObject();
-      valueObject.name = identityElem.$.name;
-      valueObject.parent = parent;
-      valueObject.isAggregateIdentity = true;
-      parent.valueObjects.push(valueObject);
+      const domainEvent = new DomainEvent();
+      domainEvent.name = identityElem.$.name;
+      domainEvent.parent = parent;
+      parent.domainEvents.push(domainEvent);
     }
   }
 }

@@ -106,6 +106,26 @@ export default class extends Generator {
         });
       }
     }
+
+    if (this.testSuiteData?.domainEventTests) {
+      for (const domainEventTestData of this.testSuiteData.domainEventTests) {
+        const filepath = `${domainEventTestData.package.replaceAll('.', '/')}/${domainEventTestData.domainEventName}DomainEventTests.java`;
+
+        this.fs.copyTpl(this.templatePath('domainevent-test.java.tpl'), this.destinationPath(filepath), {
+          domainEventTest: domainEventTestData,
+        });
+      }
+    }
+
+    if (this.testSuiteData?.domainServiceTests) {
+      for (const domainServiceTestData of this.testSuiteData.domainServiceTests) {
+        const filepath = `${domainServiceTestData.package.replaceAll('.', '/')}/${domainServiceTestData.domainServiceName}DomainServiceTests.java`;
+
+        this.fs.copyTpl(this.templatePath('domainservice-test.java.tpl'), this.destinationPath(filepath), {
+          domainServiceTest: domainServiceTestData,
+        });
+      }
+    }
   }
 
   // install() {
