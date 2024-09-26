@@ -2,13 +2,11 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13845062.svg)](https://doi.org/10.5281/zenodo.13845062)
 
- 
 This project is part of my master thesis "Bridging the Gap Between Specification and Implementation in DDD" at TH Köln University of Applied Sciences.
 
-The **DDD Domain Model Test Generator** is a Yeoman ([https://yeoman.io](https://yeoman.io/)) code generator capable of generating domain model tests for Java Spring Applications. 
+The **DDD Domain Model Test Generator** is a Yeoman ([https://yeoman.io](https://yeoman.io/)) code generator capable of generating domain model tests for Java Spring Applications.
 
 Domain model tests introduced in the thesis are tests validating the model-code gap based on a properly defined domain model. In my work a DDD metamodel were defined to describe a domain model with patterns from Domain-Driven Design (DDD).
-
 
 ## Installation
 
@@ -26,9 +24,11 @@ To use the **DDD Domain Model Test Generator** you need to define your domain mo
 Furthermore you require a [generator-config.json](./docs/example.generator-config.json) to provide the code generator with additional information about your project structure.
 
 Now you can run in the root of your Java Spring Boot Application:
+
 ```
 yo ddd
 ```
+
 to start the code generator. The generator will prompt you about the required files and an output directory and then generates the tests.
 
 An example of a generated test looks like this:
@@ -42,9 +42,9 @@ package com.example.library.catalogue.model.books;
 class BookValueObjectTests {
 
         private static final String DOMAIN_LAYER_PACKAGE_NAME = "model";
-        private static final String ENTITY_NAME = "Book";        
-        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue.model";        
-        private static final String AGGREGATE_PACKAGE = "com.example.library.catalogue.model.books";   
+        private static final String ENTITY_NAME = "Book";
+        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue.model";
+        private static final String AGGREGATE_PACKAGE = "com.example.library.catalogue.model.books";
 
         @Test
         void moduleShouldContainClassWithEntitiesName() {
