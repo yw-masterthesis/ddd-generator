@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE domain SYSTEM "domain-model.dtd">
-<domain name="Library">
-  <context name="Catalogue">
-    <entity name="Book"></entity>
-    <entity name="BookInstance"></entity>
-    <value-object name="BookId"></value-object>
-    <value-object name="ISBN"></value-object>
-    <value-object name="Title"></value-object>
-    <value-object name="Author"></value-object>
-    <enum name="BookType"></enum>
-    <service name="CatalogueService"></service>
-    <event name="BookInstanceAddedToCatalogue"></event>
-  </context>
-</domain>
+<!DOCTYPE xmi:XMI SYSTEM "domain-model.dtd">
+<xmi:XMI
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:DDD="http://example.org/DDD"
+  xmi:version="2.1"
+>
+  <DDD:Domain xmi:id="d1" name="Library">
+    <DDD:Context xmi:id="c1" name="Catalogue">
+      <DDD:Aggregate xmi:id="a1" name="Books">
+        <DDD:AggregateRoot xmi:id="ar1" name="Book" />
+        <DDD:Identity xmi:id="i1" name="ISBN" />
+        <DDD:ValueObject xmi:id="v1" name="Title" />
+        <DDD:ValueObject xmi:id="v2" name="Author" />
+      </DDD:Aggregate>
+      <DDD:Aggregate xmi:id="a2" name="BookInstances">
+        <DDD:AggregateRoot xmi:id="ar2" name="BookInstance" />
+        <DDD:Identity xmi:id="i2" name="BookId" />
+      </DDD:Aggregate>
+      <DDD:Enum xmi:id="e1" name="BookType" />
+      <DDD:Service xmi:id="s1" name="CatalogueService" />
+      <DDD:Event xmi:id="ev1" name="BookInstanceAddedToCatalogue" />
+    </DDD:Context>
+  </DDD:Domain>
+</xmi:XMI>

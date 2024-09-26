@@ -1,4 +1,4 @@
-package <%= entityTest.package %>;
+package <%= enumTest.package %>;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,60 +13,60 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-class <%= entityTest.entityName %>ValueObjectTests {
+class <%= enumTest.enumName %>ValueObjectTests {
 
-        private static final String BASE_PACKAGE = "<%= entityTest.basePackage %>";
-        private static final String DOMAIN_LAYER_PACKAGE_NAME = "<%= entityTest.domainLayerName %>";
+        private static final String BASE_PACKAGE = "<%= enumTest.basePackage %>";
+        private static final String DOMAIN_LAYER_PACKAGE_NAME = "<%= enumTest.domainLayerName %>";
 
-        private static final String DOMAIN_NAME = "<%= entityTest.domainName %>";
-        private static final String CONTEXT_NAME = "<%= entityTest.contextName %>";
-        <% if (entityTest.isPartOfAggregate) { %>
-        private static final String AGGREGATE_NAME = "<%= entityTest.aggregateName %>";
+        private static final String DOMAIN_NAME = "<%= enumTest.domainName %>";
+        private static final String CONTEXT_NAME = "<%= enumTest.contextName %>";
+        <% if (enumTest.isPartOfAggregate) { %>
+        private static final String AGGREGATE_NAME = "<%= enumTest.aggregateName %>";
         <% } %>
 
-        private static final String ENTITY_NAME = "<%= entityTest.entityName %>";
+        private static final String ENUM_NAME = "<%= enumTest.enumName %>";
 
-        private static final String DOMAIN_PACKAGE_NAME = "<%= entityTest.domainPackageName %>";
-        private static final String CONTEXT_PACKAGE_NAME = "<%= entityTest.contextPackageName %>";
-        <% if (entityTest.isPartOfAggregate) { %>
-        private static final String AGGREGATE_PACKAGE_NAME = "<%= entityTest.aggregatePackageName %>";
+        private static final String DOMAIN_PACKAGE_NAME = "<%= enumTest.domainPackageName %>";
+        private static final String CONTEXT_PACKAGE_NAME = "<%= enumTest.contextPackageName %>";
+        <% if (enumTest.isPartOfAggregate) { %>
+        private static final String AGGREGATE_PACKAGE_NAME = "<%= enumTest.aggregatePackageName %>";
         <% } %>
 
-        private static final String DOMAIN_PACKAGE = "<%= entityTest.domainPackage %>";
-        private static final String CONTEXT_PACKAGE = "<%= entityTest.contextPackage %>";
-        <% if (entityTest.isPartOfAggregate) { %>
-        private static final String AGGREGATE_PACKAGE = "<%= entityTest.aggregatePackage %>";
+        private static final String DOMAIN_PACKAGE = "<%= enumTest.domainPackage %>";
+        private static final String CONTEXT_PACKAGE = "<%= enumTest.contextPackage %>";
+        <% if (enumTest.isPartOfAggregate) { %>
+        private static final String AGGREGATE_PACKAGE = "<%= enumTest.aggregatePackage %>";
         <% } %>
 
         /**
-         * There should be a type representing the <%= entityTest.typeType %>
-         * The type should have the same name as the defined <%= entityTest.typeType %>
+         * There should be a type representing the <%= enumTest.typeType %>
+         * The type should have the same name as the defined <%= enumTest.typeType %>
          * The type should reside in the domain layer
          * The type should reside in a package/module representing the related bounded
          * context
          */
 
         @Test
-        void moduleShouldContainClassWithEntitiesName() {
+        void moduleShouldContainClassWithEnumsName() {
                 // Import all classes from the base package
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 // Check if any class has the given name
                 boolean classExists = importedClasses.stream()
-                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME));
+                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME));
 
                 // Assert that the class exists
                 assertThat(classExists)
-                                .as("Check if a class named '%s' exists", ENTITY_NAME)
+                                .as("Check if a class named '%s' exists", ENUM_NAME)
                                 .isTrue();
         }
 
         @Test
-        void entityShouldResideInDomainLayer() {
+        void enumShouldResideInDomainLayer() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(".." + DOMAIN_LAYER_PACKAGE_NAME + "..");
@@ -75,11 +75,11 @@ class <%= entityTest.entityName %>ValueObjectTests {
         }
 
         @Test
-        void entityShouldResideInBoundedContext() {
+        void enumShouldResideInBoundedContext() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(CONTEXT_PACKAGE + "..");
@@ -87,13 +87,13 @@ class <%= entityTest.entityName %>ValueObjectTests {
                 rule.check(importedClasses);
         }
 
-        <% if (entityTest.isPartOfAggregate) { %>
+        <% if (enumTest.isPartOfAggregate) { %>
         @Test
-        void entityShouldResideInAggregate() {
+        void enumShouldResideInAggregate() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(AGGREGATE_PACKAGE + "..");

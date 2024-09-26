@@ -14,6 +14,12 @@ export function packagePathComposer(
   aggregatePackageName?: string,
 ): string {
   let $package = `${packageStructure.split(packageLevel, 1)[0]}${packageLevel}`;
+  if (packageLevel === CONTEXT_KEY) {
+    const layerPackage = `${packageStructure.split(LAYER_KEY, 1)[0]}${LAYER_KEY}`;
+    if (layerPackage.length > $package.length) {
+      $package = layerPackage;
+    }
+  }
 
   if (basePackage) {
     $package = $package.replace(BASE_KEY, basePackage);

@@ -31,7 +31,7 @@ export default class extends Generator {
         type: 'input',
         name: 'outputDir',
         message: 'What`s the output dir?',
-        default: './output',
+        default: './src/test/java',
       },
       {
         type: 'input',
@@ -59,7 +59,7 @@ export default class extends Generator {
   writing() {
     if (this.testSuiteData?.domainTests) {
       for (const domainTestData of this.testSuiteData.domainTests) {
-        const filepath = `${domainTestData.domainPackage.replaceAll('.', '/')}/${domainTestData.domainName}DomainTests.java`;
+        const filepath = `${domainTestData.package.replaceAll('.', '/')}/${domainTestData.domainName}DomainTests.java`;
 
         this.fs.copyTpl(this.templatePath('domain-test.java.tpl'), this.destinationPath(filepath), {
           domainTest: domainTestData,
@@ -69,7 +69,7 @@ export default class extends Generator {
 
     if (this.testSuiteData?.contextTests) {
       for (const contextTestData of this.testSuiteData.contextTests) {
-        const filepath = `${contextTestData.contextPackage.replaceAll('.', '/')}/${contextTestData.contextName}ContextTests.java`;
+        const filepath = `${contextTestData.package.replaceAll('.', '/')}/${contextTestData.contextName}ContextTests.java`;
 
         this.fs.copyTpl(this.templatePath('context-test.java.tpl'), this.destinationPath(filepath), {
           contextTest: contextTestData,
@@ -79,10 +79,50 @@ export default class extends Generator {
 
     if (this.testSuiteData?.entityTests) {
       for (const entityTestData of this.testSuiteData.entityTests) {
-        const filepath = `${entityTestData.contextPackage.replaceAll('.', '/')}/${entityTestData.entityName}EntityTests.java`;
+        const filepath = `${entityTestData.package.replaceAll('.', '/')}/${entityTestData.entityName}EntityTests.java`;
 
         this.fs.copyTpl(this.templatePath('entity-test.java.tpl'), this.destinationPath(filepath), {
           entityTest: entityTestData,
+        });
+      }
+    }
+
+    if (this.testSuiteData?.enumTests) {
+      for (const enumTestData of this.testSuiteData.enumTests) {
+        const filepath = `${enumTestData.package.replaceAll('.', '/')}/${enumTestData.enumName}EnumTests.java`;
+
+        this.fs.copyTpl(this.templatePath('enum-test.java.tpl'), this.destinationPath(filepath), {
+          enumTest: enumTestData,
+        });
+      }
+    }
+
+    if (this.testSuiteData?.valueObjectTests) {
+      for (const valueObjectTestData of this.testSuiteData.valueObjectTests) {
+        const filepath = `${valueObjectTestData.package.replaceAll('.', '/')}/${valueObjectTestData.valueObjectName}ValueObjectTests.java`;
+
+        this.fs.copyTpl(this.templatePath('value-object-test.java.tpl'), this.destinationPath(filepath), {
+          valueObjectTest: valueObjectTestData,
+        });
+      }
+    }
+
+    if (this.testSuiteData?.domainEventTests) {
+      for (const domainEventTestData of this.testSuiteData.domainEventTests) {
+        const filepath = `${domainEventTestData.package.replaceAll('.', '/')}/${domainEventTestData.domainEventName}DomainEventTests.java`;
+
+        this.fs.copyTpl(this.templatePath('domainevent-test.java.tpl'), this.destinationPath(filepath), {
+          domainEventTest: domainEventTestData,
+        });
+      }
+    }
+
+    if (this.testSuiteData?.domainServiceTests) {
+      for (const domainServiceTestData of this.testSuiteData.domainServiceTests) {
+        const filepath = `${domainServiceTestData.package.replaceAll('.', '/')}/${domainServiceTestData.domainServiceName}DomainServiceTests.java`;
+
+        this.fs.copyTpl(this.templatePath('domainservice-test.java.tpl'), this.destinationPath(filepath), {
+          domainServiceTest: domainServiceTestData,
         });
       }
     }

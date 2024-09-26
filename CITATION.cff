@@ -4,7 +4,7 @@ authors:
 - family-names: "Wagner"
   given-names: "Yorreck"
 title: "DDD Domain Model Test Generator"
-version: 0.1.0
+version: 0.2.0
 doi: 10.5281/zenodo.13845062
 date-released: 2024-09-26
 url: "https://github.com/yw-masterthesis/ddd-generator"

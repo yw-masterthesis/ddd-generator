@@ -1,21 +1,67 @@
-<!ELEMENT domain (context+)>
-<!ATTLIST domain name ID #REQUIRED>
-<!ELEMENT context (aggregate|entity|value-object|enum|service|event)*>
-<!ATTLIST context name ID #REQUIRED>
-<!ELEMENT aggregate (root, identity?, entity*, value-object*)>
-<!ATTLIST aggregate name ID #REQUIRED>
-<!ELEMENT root EMPTY>
-<!ATTLIST root name ID #REQUIRED>
-<!ELEMENT identity EMPTY>
-<!ATTLIST identity name ID #IMPLIED>
-<!ATTLIST identity ref IDREF #IMPLIED>
-<!ELEMENT entity EMPTY>
-<!ATTLIST entity name ID #REQUIRED>
-<!ELEMENT value-object EMPTY>
-<!ATTLIST value-object name ID #REQUIRED>
-<!ELEMENT enum EMPTY>
-<!ATTLIST enum name ID #REQUIRED>
-<!ELEMENT service EMPTY>
-<!ATTLIST service name ID #REQUIRED>
-<!ELEMENT event EMPTY>
-<!ATTLIST event name ID #REQUIRED>
+<!ELEMENT xmi:XMI (DDD:Domain)>
+<!ATTLIST xmi:XMI
+  xmlns:xmi CDATA #FIXED "http://www.omg.org/XMI"
+  xmlns:DDD CDATA #FIXED "http://example.org/DDD"
+  xmi:version CDATA #FIXED "2.1"
+>
+
+<!ELEMENT DDD:Domain (DDD:Context+)>
+<!ATTLIST DDD:Domain
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Context (DDD:Aggregate | DDD:Entity | DDD:ValueObject | DDD:Enum | DDD:Service | DDD:Event)*>
+<!ATTLIST DDD:Context
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Aggregate (DDD:AggregateRoot, DDD:Identity?, DDD:Entity*, DDD:ValueObject*)>
+<!ATTLIST DDD:Aggregate
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:AggregateRoot EMPTY>
+<!ATTLIST DDD:AggregateRoot
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Identity EMPTY>
+<!ATTLIST DDD:Identity
+  xmi:id ID #REQUIRED
+  name CDATA #IMPLIED
+  ref IDREF #IMPLIED
+>
+
+<!ELEMENT DDD:Entity EMPTY>
+<!ATTLIST DDD:Entity
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:ValueObject EMPTY>
+<!ATTLIST DDD:ValueObject
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Enum EMPTY>
+<!ATTLIST DDD:Enum
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Service EMPTY>
+<!ATTLIST DDD:Service
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
+
+<!ELEMENT DDD:Event EMPTY>
+<!ATTLIST DDD:Event
+  xmi:id ID #REQUIRED
+  name CDATA #REQUIRED
+>
