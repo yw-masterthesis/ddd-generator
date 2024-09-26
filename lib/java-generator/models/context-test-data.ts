@@ -1,6 +1,7 @@
-import { Context } from '../../core/domain-model.js';
+import { Context, Domain } from '../../core/domain-model.js';
 import { JavaGeneratorConfig } from '../java-generator-config.js';
 import { CONTEXT_KEY, DOMAIN_KEY, packagePathComposer } from '../util/package-composer.js';
+import { getParentName } from '../util/util.js';
 
 export interface ContextTestData {
   package: string;
@@ -15,7 +16,7 @@ export interface ContextTestData {
 }
 
 export function createContextTestData(context: Context, config: JavaGeneratorConfig): ContextTestData {
-  const domainName = context.parent!.name!;
+  const domainName = getParentName(context, Domain);
   const contextName = context.name!;
   const domainPackageName = domainName?.toLowerCase();
   const contextPackageName = contextName?.toLowerCase();
