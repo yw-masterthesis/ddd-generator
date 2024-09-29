@@ -10,11 +10,20 @@ Domain model tests introduced in the thesis are tests validating the model-code 
 
 ## Installation
 
-To use the **DDD Domain Model Test Generator** you need to install the yeoman cli and the generator first via npm:
+To use the **DDD Domain Model Test Generator** you need to install the yeoman cli and the generator. You can install Yeoman globally using npm:
 
 ```sh
 npm install -g yo
-npm install -g git+https://github.com/yw-masterthesis/ddd-generator.git
+```
+
+At the current state the **DDD Domain Model Test Generator** is not publicly available as a npm package. Therefore, you need to clone the repository and install the package manually.
+
+```sh
+git clone https://github.com/yw-masterthesis/ddd-generator.git
+cd ddd-generator
+npm install
+npm run build
+npm link
 ```
 
 ## Usage
@@ -25,7 +34,7 @@ Furthermore you require a [generator-config.json](./docs/example.generator-confi
 
 Now you can run in the root of your Java Spring Boot Application:
 
-```
+```sh
 yo ddd
 ```
 

@@ -1,5 +1,5 @@
 import { parseStringPromise } from 'xml2js';
-import { Aggregate, Context, Domain, DomainEvent, DomainService, Entity, Enum, ValueObject } from './domain-model.js';
+import { Aggregate, Context, Domain, DomainEvent, DomainService, Entity, ValueObject } from './domain-model.js';
 
 export class AppService {
   // Function to parse XML string
@@ -29,15 +29,11 @@ export class AppService {
 
           parseNestedEntities(aggregateElem, aggregate);
 
-          parseNestedEnums(aggregateElem, aggregate);
-
           parseNestedValueObjects(aggregateElem, aggregate);
         }
       }
 
       parseNestedEntities(contextElem, context);
-
-      parseNestedEnums(contextElem, context);
 
       parseNestedValueObjects(contextElem, context);
 
@@ -58,17 +54,6 @@ function parseNestedEntities(parentElem: any, parent: Context | Aggregate) {
       entity.name = entityElem.$.name;
       entity.parent = parent;
       parent.entities.push(entity);
-    }
-  }
-}
-
-function parseNestedEnums(parentElem: any, parent: Context | Aggregate) {
-  if (parentElem['DDD:Enum']) {
-    for (const enumElem of parentElem['DDD:Enum']) {
-      const $enum = new Enum();
-      $enum.name = enumElem.$.name;
-      $enum.parent = parent;
-      parent.enums.push($enum);
     }
   }
 }

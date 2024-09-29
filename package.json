@@ -1,6 +1,6 @@
 {
   "name": "generator-ddd",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "keywords": [
     "yeoman-generator"
@@ -13,6 +13,7 @@
   "main": "./dist/generators/index.js",
   "types": "./dist/types/generators/index.d.ts",
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "npm run compile && npm run copy-files",
     "check-types": "tsc -p tsconfig.spec.json",
     "clean": "rimraf dist",
