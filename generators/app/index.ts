@@ -87,16 +87,6 @@ export default class extends Generator {
       }
     }
 
-    if (this.testSuiteData?.enumTests) {
-      for (const enumTestData of this.testSuiteData.enumTests) {
-        const filepath = `${enumTestData.package.replaceAll('.', '/')}/${enumTestData.enumName}EnumTests.java`;
-
-        this.fs.copyTpl(this.templatePath('enum-test.java.tpl'), this.destinationPath(filepath), {
-          enumTest: enumTestData,
-        });
-      }
-    }
-
     if (this.testSuiteData?.valueObjectTests) {
       for (const valueObjectTestData of this.testSuiteData.valueObjectTests) {
         const filepath = `${valueObjectTestData.package.replaceAll('.', '/')}/${valueObjectTestData.valueObjectName}ValueObjectTests.java`;

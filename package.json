@@ -1,6 +1,6 @@
 {
   "name": "generator-ddd",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "keywords": [
     "yeoman-generator"
@@ -16,7 +16,7 @@
     "prebuild": "npm run clean",
     "build": "npm run compile && npm run copy-files",
     "check-types": "tsc -p tsconfig.spec.json",
-    "clean": "npx rimraf dist",
+    "clean": "rimraf dist",
     "compile": "tsc",
     "completion": "tabtab install --name jhipster --auto",
     "copy-files": "cpy \"generators/**\" \"!**/*.(js|cjs|mjs|ts|cts|mts|snap)\" \"!**/__*/*\" dist/generators",

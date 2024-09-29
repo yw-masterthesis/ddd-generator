@@ -5,14 +5,12 @@ import { createDomainTestData, DomainTestData } from './models/domain-test-data.
 import { createDomainEventTestData, DomainEventTestData } from './models/domainevent-test-data.js';
 import { createDomainServiceTestData, DomainServiceTestData } from './models/domainservice-test-data.js';
 import { createEntityTestData, EntityTestData } from './models/entity-test-data.js';
-import { createEnumTestData, EnumTestData } from './models/enum-test-data.js';
 import { createValueObjectTestData, ValueObjectTestData } from './models/value-object-test-data.js';
 
 export interface TestSuiteData {
   domainTests: DomainTestData[];
   contextTests: ContextTestData[];
   entityTests: EntityTestData[];
-  enumTests: EnumTestData[];
   valueObjectTests: ValueObjectTestData[];
   domainEventTests: DomainEventTestData[];
   domainServiceTests: DomainServiceTestData[];
@@ -24,7 +22,6 @@ export class JavaGenerator {
       domainTests: [],
       contextTests: [],
       entityTests: [],
-      enumTests: [],
       valueObjectTests: [],
       domainEventTests: [],
       domainServiceTests: [],
@@ -56,11 +53,6 @@ export class JavaGenerator {
           testSuiteData.entityTests.push(entityTestData);
         }
 
-        for (const $enum of aggregate.enums) {
-          const enumTestData = createEnumTestData($enum, config);
-          testSuiteData.enumTests.push(enumTestData);
-        }
-
         for (const valueObject of aggregate.valueObjects) {
           const valueObjectTestData = createValueObjectTestData(valueObject, config);
           testSuiteData.valueObjectTests.push(valueObjectTestData);
@@ -70,11 +62,6 @@ export class JavaGenerator {
       for (const entity of context.entities) {
         const entityTestData = createEntityTestData(entity, config);
         testSuiteData.entityTests.push(entityTestData);
-      }
-
-      for (const $enum of context.enums) {
-        const enumTestData = createEnumTestData($enum, config);
-        testSuiteData.enumTests.push(enumTestData);
       }
 
       for (const valueObject of context.valueObjects) {

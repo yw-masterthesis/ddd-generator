@@ -11,7 +11,7 @@
   name CDATA #REQUIRED
 >
 
-<!ELEMENT DDD:Context (DDD:Aggregate | DDD:Entity | DDD:ValueObject | DDD:Enum | DDD:Service | DDD:Event)*>
+<!ELEMENT DDD:Context (DDD:Aggregate | DDD:Entity | DDD:ValueObject | DDD:Service | DDD:Event)*>
 <!ATTLIST DDD:Context
   xmi:id ID #REQUIRED
   name CDATA #REQUIRED
@@ -44,12 +44,6 @@
 
 <!ELEMENT DDD:ValueObject EMPTY>
 <!ATTLIST DDD:ValueObject
-  xmi:id ID #REQUIRED
-  name CDATA #REQUIRED
->
-
-<!ELEMENT DDD:Enum EMPTY>
-<!ATTLIST DDD:Enum
   xmi:id ID #REQUIRED
   name CDATA #REQUIRED
 >
